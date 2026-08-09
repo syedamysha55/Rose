@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Syeda Mysha | Premium HTML Email Signature Designer</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    padding: 35px 15px;
+    color: #4b3540;
+    background:
+        radial-gradient(circle at 10% 10%, rgba(222,176,190,.35), transparent 30%),
+        radial-gradient(circle at 90% 90%, rgba(194,137,157,.25), transparent 30%),
+        linear-gradient(135deg, #fffafa, #f7eef2, #fffafa);
+    overflow-x: hidden;
+}
+
+/* FLOATING BACKGROUND GLOW */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: .35;
+    z-index: -1;
+    animation: floatGlow 7s ease-in-out infinite alternate;
+}
+
+body::before {
+    background: #d69aaa;
+    top: 5%;
+    left: -80px;
+}
+
+body::after {
+    background: #b9788d;
+    bottom: 5%;
+    right: -80px;
+    animation-delay: 2s;
+}
+
+@keyframes floatGlow {
+    from {
+        transform: translateY(0) scale(1);
+    }
+
+    to {
+        transform: translateY(35px) scale(1.15);
+    }
+}
+
+/* MAIN CONTAINER */
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 920px;
+    margin: auto;
+    background: rgba(255,255,255,.78);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(190,130,150,.35);
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow:
+        0 30px 80px rgba(83,42,60,.16),
+        0 0 0 7px rgba(255,255,255,.5);
+    animation: pageIn 1s ease both;
+}
+
+@keyframes pageIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* PREMIUM TOP BAR */
+.top-bar {
+    position: relative;
+    height: 8px;
+    background: linear-gradient(
+        90deg,
+        #6d3d50,
+        #b9788d,
+        #e4b8c4,
+        #b9788d,
+        #6d3d50
+    );
+    background-size: 300% 100%;
+    animation: gradientMove 5s linear infinite;
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 300% 50%;
+    }
+}
+
+/* HEADER */
+.header {
+    text-align: center;
+    padding: 22px 20px 5px;
+    animation: fadeUp 1s .2s ease both;
+}
+
+.badge {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 30px;
+    background: #fff3f6;
+    border: 1px solid #e1bbc6;
+    color: #8c5368;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    box-shadow: 0 5px 15px rgba(100,50,70,.06);
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* PROFILE */
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    padding: 42px 55px 48px;
+}
+
+/* PHOTO */
+.photo-area {
+    position: relative;
+    flex-shrink: 0;
+    width: 205px;
+    height: 205px;
+    animation: photoIn 1s .3s ease both;
+}
+
+@keyframes photoIn {
+    from {
+        opacity: 0;
+        transform: scale(.75) rotate(-8deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
+
+.photo-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: conic-gradient(
+        #744257,
+        #dca9b7,
+        #f0d2da,
+        #9b5d73,
+        #744257
+    );
+    animation: spinRing 8s linear infinite;
+}
+
+@keyframes spinRing {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.photo-ring::before {
+    content: "";
+    position: absolute;
+    inset: 5px;
+    background: #fff;
+    border-radius: 50%;
+}
+
+.photo {
+    position: absolute;
+    inset: 12px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid white;
+    box-shadow:
+        0 15px 35px rgba(90,45,65,.22);
+    z-index: 2;
+}
+
+.photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .6s ease;
+}
+
+.photo:hover img {
+    transform: scale(1.08);
+}
+
+/* SMALL ORBITS */
+.orbit {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #b9788d;
+    border: 3px solid white;
+    border-radius: 50%;
+    z-index: 4;
+    box-shadow: 0 3px 10px rgba(80,40,60,.2);
+}
+
+.orbit.one {
+    top: 12px;
+    right: 25px;
+    animation: orbitFloat 3s ease-in-out infinite;
+}
+
+.orbit.two {
+    bottom: 25px;
+    left: 4px;
+    animation: orbitFloat 3s 1s ease-in-out infinite;
+}
+
+@keyframes orbitFloat {
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-9px);
+    }
+}
+
+/* PROFILE INFO */
+.profile-info {
+    flex: 1;
+    animation: fadeUp 1s .45s ease both;
+}
+
+.eyebrow {
+    color: #b9788d;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 9px;
+}
+
+.name {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 48px;
+    line-height: 1;
+    color: #60374a;
+    margin-bottom: 12px;
+}
+
+.role {
+    display: inline-block;
+    color: #8a5065;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1.3px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #dfbec8;
+}
+
+.description {
+    margin-top: 17px;
+    max-width: 520px;
+    color: #76636a;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* CTA */
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 11px;
+    margin-top: 23px;
+}
+
+.button {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    text-decoration: none;
+    padding: 12px 21px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: bold;
+    transition: .3s ease;
+}
+
+.button::after {
+    content: "";
+    position: absolute;
+    width: 60px;
+    height: 100%;
+    top: 0;
+    left: -80px;
+    background: rgba(255,255,255,.35);
+    transform: skewX(-20deg);
+    transition: .6s;
+}
+
+.button:hover::after {
+    left: 120%;
+}
+
+.primary {
+    color: white;
+    background: linear-gradient(135deg, #6d3d50, #a8677d);
+    box-shadow: 0 8px 20px rgba(100,50,70,.2);
+}
+
+.secondary {
+    color: #704456;
+    background: white;
+    border: 1px solid #dfc0ca;
+}
+
+.button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(90,45,65,.16);
+}
+
+/* DIVIDER */
+.divider {
+    margin: 0 55px;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #d9b5c0,
+        transparent
+    );
+}
+
+/* SERVICES */
+.services {
+    padding: 45px 55px;
+}
+
+.section-top {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.section-label {
+    color: #b9788d;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 9px;
+}
+
+.section-title {
+    font-family: Georgia, "Times New Roman", serif;
+    color: #62384b;
+    font-size: 30px;
+}
+
+/* SERVICE CARDS */
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+
+.service {
+    position: relative;
+    padding: 23px 17px;
+    background: rgba(255,250,251,.85);
+    border: 1px solid #ead8de;
+    border-radius: 18px;
+    transition: .4s ease;
+    overflow: hidden;
+}
+
+.service::before {
+    content: "";
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #f4dce3;
+    top: -35px;
+    right: -35px;
+    transition: .4s;
+}
+
+.service:hover {
+    transform: translateY(-7px);
+    border-color: #cf9aaa;
+    box-shadow: 0 15px 30px rgba(90,45,65,.1);
+}
+
+.service:hover::before {
+    transform: scale(1.5);
+}
+
+.icon {
+    position: relative;
+    font-size: 22px;
+    margin-bottom: 14px;
+}
+
+.service h3 {
+    position: relative;
+    color: #704456;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.service p {
+    position: relative;
+    color: #806d74;
+    font-size: 11px;
+    line-height: 1.65;
+}
+
+/* CONTACT */
+.contact {
+    margin: 0 55px 40px;
+    padding: 32px;
+    text-align: center;
+    border-radius: 22px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,246,248,.95),
+            rgba(250,237,241,.95)
+        );
+    border: 1px solid #e5ccd4;
+    animation: fadeUp 1s .8s ease both;
+}
+
+.contact h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    color: #63394c;
+    font-size: 26px;
+    margin-bottom: 7px;
+}
+
+.contact p {
+    color: #806c73;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+.contact-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.contact-link {
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 25px;
+    background: white;
+    border: 1px solid #e0c2cc;
+    color: #704456;
+    text-decoration: none;
+    font-size: 11px;
+    transition: .3s;
+}
+
+.contact-link:hover {
+    color: white;
+    background: #774359;
+    transform: translateY(-2px);
+}
+
+/* FOOTER */
+.footer {
+    text-align: center;
+    padding: 21px;
+    background: #63394c;
+    color: #f8e8ed;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+}
+
+.footer strong {
+    color: white;
+}
+
+/* MOBILE */
+@media (max-width: 750px) {
+
+    body {
+        padding: 20px 10px;
+    }
+
+    .profile {
+        flex-direction: column;
+        text-align: center;
+        padding: 38px 25px;
+        gap: 35px;
+    }
+
+    .photo-area {
+        width: 180px;
+        height: 180px;
+    }
+
+    .name {
+        font-size: 38px;
+    }
+
+    .role {
+        font-size: 12px;
+    }
+
+    .description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .buttons {
+        justify-content: center;
+    }
+
+    .divider {
+        margin: 0 25px;
+    }
+
+    .services {
+        padding: 38px 25px;
+    }
+
+    .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .contact {
+        margin-left: 25px;
+        margin-right: 25px;
+    }
+}
+
+@media (max-width: 430px) {
+
+    .name {
+        font-size: 32px;
+    }
+
+    .service-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-title {
+        font-size: 25px;
+    }
+
+    .contact {
+        padding: 25px 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- PREMIUM TOP BAR -->
+    <div class="top-bar"></div>
+
+    <!-- HEADER -->
+    <header class="header">
+        <span class="badge">
+            ✦ Personal Brand • Professional Service ✦
+        </span>
+    </header>
+
+    <!-- PROFILE -->
+    <section class="profile">
+
+        <!-- PHOTO -->
+        <div class="photo-area">
+
+            <div class="photo-ring"></div>
+
+            <div class="orbit one"></div>
+            <div class="orbit two"></div>
+
+            <div class="photo">
+                <a
+                    href="https://www.instagram.com/_syeda_mysha/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <img
+                        src="https://raw.githubusercontent.com/syedamysha55/Rose/main/rose.jpg"
+                        alt="Syeda Mysha"
+                    >
+                </a>
+            </div>
+
+        </div>
+
+        <!-- INFORMATION -->
+        <div class="profile-info">
+
+            <div class="eyebrow">
+                Hello, I'm
+            </div>
+
+            <h1 class="name">
+                Syeda Mysha
+            </h1>
+
+            <div class="role">
+                HTML Email Signature Designer
+            </div>
+
+            <p class="description">
+                I create elegant, modern and professional
+                HTML email signatures that help businesses,
+                professionals and personal brands build a
+                strong and memorable digital identity.
+            </p>
+
+            <div class="buttons">
+
+                <a
+                    class="button primary"
+                    href="mailto:syedamysha55@gmail.com?subject=HTML%20Email%20Signature%20Inquiry"
+                >
+                    ✉ Hire Me
+                </a>
+
+                <a
+                    class="button secondary"
+                    href="https://www.instagram.com/_syeda_mysha/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    ♡ Instagram
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- SERVICES -->
+    <section class="services">
+
+        <div class="section-top">
+
+            <div class="section-label">
+                What I Create
+            </div>
+
+            <h2 class="section-title">
+                Premium Signature Services
+            </h2>
+
+        </div>
+
+        <div class="service-grid">
+
+            <div class="service">
+
+                <div class="icon">✦</div>
+
+                <h3>
+                    Custom HTML
+                </h3>
+
+                <p>
+                    Personalized HTML email signatures
+                    designed for your brand.
+                </p>
+
+            </div>
+
+            <div class="service">
+
+                <div class="icon">🔗</div>
+
+                <h3>
+                    Clickable Links
+                </h3>
+
+                <p>
+                    Email, phone, website and social
+                    links made easy to access.
+                </p>
+
+            </div>
+
+            <div class="service">
+
+                <div class="icon">♡</div>
+
+                <h3>
+                    Social Integration
+                </h3>
+
+                <p>
+                    Connect Instagram, Facebook and
+                    other professional profiles.
+                </p>
+
+            </div>
+
+            <div class="service">
+
+                <div class="icon">◆</div>
+
+                <h3>
+                    Premium Design
+                </h3>
+
+                <p>
+                    Clean, elegant and professional
+                    visual identity for every email.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact">
+
+        <h2>
+            Let's Create Something Professional
+        </h2>
+
+        <p>
+            Need a custom HTML email signature?
+            Let's work together.
+        </p>
+
+        <div class="contact-links">
+
+            <a
+                class="contact-link"
+                href="mailto:syedamysha55@gmail.com"
+            >
+                ✉ Email Me
+            </a>
+
+            <a
+                class="contact-link"
+                href="tel:01300921004"
+            >
+                ☎ Call Me
+            </a>
+
+            <a
+                class="contact-link"
+                href="https://www.instagram.com/_syeda_mysha/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                ♡ Instagram
+            </a>
+
+            <a
+                class="contact-link"
+                href="https://www.facebook.com/syeda.mysha.2024"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Facebook
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        Designed &amp; Crafted by
+        <strong>Syeda Mysha</strong>
+        • HTML Email Signature Designer
+    </footer>
+
+</div>
+
+</body>
+  </html>
